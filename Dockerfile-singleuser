@@ -23,12 +23,14 @@ RUN echo "jovyan ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 USER jovyan
 
 # lightning python
-RUN pip3 install lightning-python
+RUN pip3 install lightning-python pymongo psycopg2
 RUN source activate /opt/conda/envs/python2 && \
-    pip install lightning-python && \
+    pip install lightning-python pymongo psycopg2 && \
     source deactivate
 # lightning R
 RUN R -e "install.packages('LightningR', repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('RMongo', repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages('RPostgreSQL', repos='http://cran.rstudio.com/')"
 
 
 # smoke test that it's importable at least
