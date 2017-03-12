@@ -45,8 +45,8 @@ pull:
 
 notebook_image: pull
 
-lightning_server: 
-	docker build -t lightning_server -f Dockerfile-lightning .
+#lightning_server:
+#	docker build -t lightning_server -f Dockerfile-lightning .
 
 build: check-files network volumes
 	docker-compose build

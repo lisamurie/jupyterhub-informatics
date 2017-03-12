@@ -24,6 +24,7 @@ RUN conda install -c scikit-learn-contrib lightning=0.2.0
 RUN source activate /opt/conda/envs/python2 && \
     conda install -c scikit-learn-contrib lightning=0.2.0 && \
     source deactivate
+RUN R -e "install.packages('LightningR', repos='http://cran.rstudio.com/')"
 
 USER jovyan
 RUN echo "jovyan ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers

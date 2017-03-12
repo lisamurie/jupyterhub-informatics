@@ -46,7 +46,8 @@ services:
       CONFIGPROXY_AUTH_TOKEN: ${CONFIGPROXY_AUTH_TOKEN}
     command: >
       jupyterhub -f /srv/jupyterhub/jupyterhub_config.py
-
+    links:
+      - "lightning:lightningviz"
 volumes:
   data:
     external:
