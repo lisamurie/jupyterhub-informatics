@@ -33,10 +33,13 @@ This deployment is **NOT** intended for a production environment.
 
 ## Setup Procedure
 
-* Set up an account on GitHub to use for OAuth authentication. Review instructions from here. You would need the following to add to an ".env" file. Use "env-template" as a template. The ".env" file is read by Docker Compose to load environment variables into the build and launch processes. Keep the contents of ".env" hidden and do not commit this to GitHub.
- * GITHUB_CLIENT_ID="your GitHub client ID"
- * GITHUB_CLIENT_SECRET="your GitHub client secret"
- * OAUTH_CALLBACK_URL="your call back url", usually looks like "https://notebook.domain.tld/hub/oauth_callback".
+* Authentication, choose one of two below and comment out what you did not pick in **jupyterhub_config.py**:
+ * OAuth: Set up an account on GitHub to use for OAuth authentication. Review instructions from here. You would need the following to add to an ".env" file. Use "env-template" as a template. The ".env" file is read by Docker Compose to load environment variables into the build and launch processes. Keep the contents of ".env" hidden and do not commit this to GitHub.
+    * GITHUB_CLIENT_ID="your GitHub client ID"
+    * GITHUB_CLIENT_SECRET="your GitHub client secret"
+    * OAUTH_CALLBACK_URL="your call back url", usually looks like "https://notebook.domain.tld/hub/oauth_callback".
+  * DummyAuthenticator (see instructions [here](https://github.com/yuvipanda/jupyterhub-dummy-authenticator))
+  
 * Clone this repository:  https://github.com/PHI-Toolkit/jupyterhub-informatics.git
 ```
 $ git clone https://github.com/PHI-Toolkit/jupyterhub-informatics.git
@@ -45,7 +48,7 @@ $ git clone https://github.com/PHI-Toolkit/jupyterhub-informatics.git
 ```
 $ make build
 ```
-* Create the Jupyter Notebook single-user Docker image (uses Dockerfile-singleuser).
+* Create the Jupyter Notebook single-user Docker image (uses Dockerfile-singleuser). (Read the notes on the **notebook_image** section of the Makefile to make sure you have the right docker instruction commented out - docker versus nvidia-docker.)
 ```
 $ make notebook_image
 ```

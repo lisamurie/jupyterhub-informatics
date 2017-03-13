@@ -40,7 +40,10 @@ check-files: userlist $(cert_files)
 
 # originally "docker pull $(DOCKER_NOTEBOOK_IMAGE)" but changed it to "build" instead
 # to be able to incorporate enhancements like sudo for user "jovyan"
+# use the nvidia-docker command if you need GPU enabled containers. instructions
+# for the set up process is found here: https://github.com/NVIDIA/nvidia-docker.
 pull:
+	#docker build -t $(DOCKER_NOTEBOOK_IMAGE) -f Dockerfile-singleuser .
 	nvidia-docker build -t $(DOCKER_NOTEBOOK_IMAGE) -f Dockerfile-singleuser .
 
 notebook_image: pull
